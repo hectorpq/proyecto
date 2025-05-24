@@ -15,6 +15,8 @@ public interface InspeccionCalidadService {
 
     List<InspeccionCalidad> obtenerPorResultado(String resultado);
 
+    List<InspeccionCalidad> obtenerPorEstado(String estado);
+
     InspeccionCalidad registrar(InspeccionCalidad inspeccion);
 
     void eliminar(Long id);

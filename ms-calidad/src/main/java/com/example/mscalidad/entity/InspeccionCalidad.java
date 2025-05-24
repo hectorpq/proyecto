@@ -20,11 +20,22 @@ public class InspeccionCalidad {
     private String observaciones;           // Comentarios u observaciones
 
     private LocalDateTime fechaInspeccion;  // Fecha y hora de la inspección
+    private String estado;
+
 
     // Constructor vacío obligatorio para JPA
     public InspeccionCalidad() {}
 
     // Getters y Setters
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
 
     public Long getId() {
         return id;

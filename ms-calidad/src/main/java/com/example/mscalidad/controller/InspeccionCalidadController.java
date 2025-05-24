@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/inspecciones")
+@RequestMapping("/calidad")
 public class InspeccionCalidadController {
 
     @Autowired
@@ -35,6 +35,11 @@ public class InspeccionCalidadController {
     @GetMapping("/resultado/{resultado}")
     public ResponseEntity<List<InspeccionCalidad>> obtenerPorResultado(@PathVariable String resultado) {
         return ResponseEntity.ok(service.obtenerPorResultado(resultado));
+    }
+
+    @GetMapping("/estado/{estado}") // NUEVO
+    public ResponseEntity<List<InspeccionCalidad>> obtenerPorEstado(@PathVariable String estado) {
+        return ResponseEntity.ok(service.obtenerPorEstado(estado));
     }
 
     @PostMapping

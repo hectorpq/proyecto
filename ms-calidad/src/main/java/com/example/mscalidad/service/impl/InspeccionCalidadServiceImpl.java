@@ -1,7 +1,8 @@
-package com.example.mscalidad.service;
+package com.example.mscalidad.service.impl;
 
 import com.example.mscalidad.entity.InspeccionCalidad;
 import com.example.mscalidad.repository.InspeccionCalidadRepository;
+import com.example.mscalidad.service.InspeccionCalidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,22 @@ public class InspeccionCalidadServiceImpl implements InspeccionCalidadService {
     }
 
     @Override
+    public List<InspeccionCalidad> obtenerPorEstado(String estado) {
+        return repository.findByEstado(estado);
+    }
+
+    @Override
     public InspeccionCalidad registrar(InspeccionCalidad inspeccion) {
+        String resultado = inspeccion.getResultado();
+        if (resultado != null && (
+                resultado.equalsIgnoreCase("Aprobado") ||
+                        resultado.equalsIgnoreCase("Sin defectos") ||
+                        resultado.equalsIgnoreCase("Sin defectos visibles")
+        )) {
+            inspeccion.setEstado("✅");
+        } else {
+            inspeccion.setEstado("❌");
+        }
         return repository.save(inspeccion);
     }
 
@@ -44,3 +60,4 @@ public class InspeccionCalidadServiceImpl implements InspeccionCalidadService {
         repository.deleteById(id);
     }
 }
+
