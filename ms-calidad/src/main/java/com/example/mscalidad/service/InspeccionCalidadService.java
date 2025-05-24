@@ -1,7 +1,6 @@
 package com.example.mscalidad.service;
 
 import com.example.mscalidad.entity.InspeccionCalidad;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,8 +11,6 @@ public interface InspeccionCalidadService {
     Optional<InspeccionCalidad> obtenerPorId(Long id);
 
     List<InspeccionCalidad> obtenerPorCodigoProducto(String codigoProducto);
-
-    List<InspeccionCalidad> obtenerPorResultado(String resultado);
 
     List<InspeccionCalidad> obtenerPorEstado(String estado);
 

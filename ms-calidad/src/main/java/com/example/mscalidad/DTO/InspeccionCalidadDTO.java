@@ -1,14 +1,9 @@
-package com.example.mscalidad.entity;
+package com.example.mscalidad.DTO;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "inspecciones_calidad")
-public class InspeccionCalidad {
+public class InspeccionCalidadDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String codigoProducto;
@@ -30,8 +25,7 @@ public class InspeccionCalidad {
     private boolean pregunta5;
     private boolean pregunta6;
 
-    // Constructor vacío para JPA
-    public InspeccionCalidad() {}
+    public InspeccionCalidadDTO() {}
 
     public Long getId() {
         return id;
@@ -137,4 +131,3 @@ public class InspeccionCalidad {
         this.pregunta6 = pregunta6;
     }
 }
-

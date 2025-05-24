@@ -1,50 +1,47 @@
 package com.example.mscalidad.controller;
 
+import com.example.mscalidad.DTO.InspeccionCalidadDTO;
 import com.example.mscalidad.entity.InspeccionCalidad;
+import com.example.mscalidad.mapper.InspeccionCalidadMapper;
 import com.example.mscalidad.service.InspeccionCalidadService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/calidad")
 public class InspeccionCalidadController {
 
-    @Autowired
-    private InspeccionCalidadService service;
+    private final InspeccionCalidadService service;
+
+    public InspeccionCalidadController(InspeccionCalidadService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public ResponseEntity<List<InspeccionCalidad>> obtenerTodas() {
-        return ResponseEntity.ok(service.obtenerTodas());
+    public ResponseEntity<List<InspeccionCalidadDTO>> obtenerTodas() {
+        List<InspeccionCalidadDTO> listaDTO = service.obtenerTodas()
+                .stream()
+                .map(InspeccionCalidadMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InspeccionCalidad> obtenerPorId(@PathVariable Long id) {
+    public ResponseEntity<InspeccionCalidadDTO> obtenerPorId(@PathVariable Long id) {
         return service.obtenerPorId(id)
+                .map(InspeccionCalidadMapper::toDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/producto/{codigo}")
-    public ResponseEntity<List<InspeccionCalidad>> obtenerPorCodigoProducto(@PathVariable String codigo) {
-        return ResponseEntity.ok(service.obtenerPorCodigoProducto(codigo));
-    }
-
-    @GetMapping("/resultado/{resultado}")
-    public ResponseEntity<List<InspeccionCalidad>> obtenerPorResultado(@PathVariable String resultado) {
-        return ResponseEntity.ok(service.obtenerPorResultado(resultado));
-    }
-
-    @GetMapping("/estado/{estado}") // NUEVO
-    public ResponseEntity<List<InspeccionCalidad>> obtenerPorEstado(@PathVariable String estado) {
-        return ResponseEntity.ok(service.obtenerPorEstado(estado));
-    }
-
     @PostMapping
-    public ResponseEntity<InspeccionCalidad> registrar(@RequestBody InspeccionCalidad inspeccion) {
-        return ResponseEntity.ok(service.registrar(inspeccion));
+    public ResponseEntity<InspeccionCalidadDTO> registrar(@RequestBody InspeccionCalidadDTO dto) {
+        InspeccionCalidad entidad = InspeccionCalidadMapper.toEntity(dto);
+        InspeccionCalidad guardado = service.registrar(entidad);
+        return ResponseEntity.ok(InspeccionCalidadMapper.toDTO(guardado));
     }
 
     @DeleteMapping("/{id}")
