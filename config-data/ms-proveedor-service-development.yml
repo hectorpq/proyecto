@@ -32,7 +32,7 @@ eureka:
 
 
 
-    
+
 #eureka:
 #  client:
 #    serviceUrl:
