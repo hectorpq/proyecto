@@ -16,7 +16,7 @@ public class ProveedorMapper {
             return null;
         }
 
-        Proveedor proveedor = new Proveedor();
+        Proveedor proveedor = new Proveedor("PRV002", "Distribuciones Globales", "María Fernández", "+51983456789", "ventas@distribuciones.com", "Calle Comercio 456");
         proveedor.setCodigoProveedor(createDTO.getCodigoProveedor());
         proveedor.setNombreEmpresa(createDTO.getNombreEmpresa());
         proveedor.setNombreContacto(createDTO.getNombreContacto());

@@ -33,11 +33,11 @@ public class ProveedorController {
 
 
 
-    @GetMapping
-    public String ejemplo() {
-        log.info("Mensaje de ejemplo");
-        return "OK";
-    }
+//    @GetMapping
+//    public String ejemplo() {
+//        log.info("Mensaje de ejemplo");
+//        return "OK sigue asi mijo";
+//    }
 
 
     @Autowired

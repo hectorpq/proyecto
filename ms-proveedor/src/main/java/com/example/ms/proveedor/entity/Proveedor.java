@@ -5,17 +5,10 @@ import lombok.Data;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "proveedores")
@@ -103,6 +96,10 @@ public class Proveedor {
     @Column(name = "fecha_actualizacion")
     private LocalDateTime fechaActualizacion;
 
+    public Proveedor() {
+
+    }
+
     public enum TipoProveedor {
         NACIONAL,
         INTERNACIONAL,
@@ -113,7 +110,7 @@ public class Proveedor {
     }
 
 
-    public Proveedor() {
+    public Proveedor(String prv002, String distribucionesGlobales, String maríaFernández, String s, String mail, String string) {
     }
 
     public Long getId() {
