@@ -45,3 +45,10 @@ spring:
             - Path=/api/v1/proveedores**
 #          filters:
 #            - AuthFilter
+
+        - id: ms-proveedor2-service
+        uri: lb://ms-proveedor2-service
+        predicates:
+          - Path=/api/proveedores/**
+        #          filters:
+        #            - AuthFilter
