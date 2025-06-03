@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #server:
 #  port: ${PORT:${SERVER_PORT:0}}  # Deja que Spring asigne un puerto aleatorio si no se especifica
 #
@@ -27,12 +27,6 @@
 #      defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
 #  instance:
 #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-=======
-server:
-  port: ${PORT:${SERVER_PORT:0}}
->>>>>>> 31da95e4aa6b7e20b101629cf0b24d855158d3b9
-
-
 
 
 server:
@@ -43,31 +37,23 @@ spring:
     name: ms-almacen-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/db_almacen
+    url: jdbc:mysql://localhost:3306/db_alamacen
     username: root
-<<<<<<< HEAD
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
-=======
-    password:  # <-- Agrega tu contraseña si tu MySQL tiene una
->>>>>>> 31da95e4aa6b7e20b101629cf0b24d855158d3b9
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-<<<<<<< HEAD
 
-=======
-    database-platform: org.hibernate.dialect.MySQL8Dialect
->>>>>>> 31da95e4aa6b7e20b101629cf0b24d855158d3b9
 
 springdoc:
   api-docs:
     enabled: true
   swagger-ui:
     enabled: true
-    path: /swagger-ui.html
+    path: /doc/swagger-ui.html
 
 #eureka:
 #  client:
@@ -77,14 +63,9 @@ springdoc:
 #    hostname: localhost
 eureka:
   client:
-<<<<<<< HEAD
     serviceUrl:
       #defaultZone: http://localhost:8090/eureka
-=======
-    service-url:
->>>>>>> 31da95e4aa6b7e20b101629cf0b24d855158d3b9
       defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
   instance:
     #hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
