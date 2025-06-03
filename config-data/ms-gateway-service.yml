@@ -51,4 +51,11 @@ spring:
           predicates:
             - Path=/api/proveedores/**
         #          filters:
-        #            - AuthFilter
+        #            - AuthFilter}
+
+        - id: ms-almacen-service
+          uri: lb://ms-almacen-service
+          predicates:
+            - Path=/api/productos/**
+
+
