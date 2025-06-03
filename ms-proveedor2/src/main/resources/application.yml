@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: ms-proveedor2-service
@@ -6,6 +5,3 @@ spring:
     active: development
   config:
     import: optional:configserver:http://root:123456@localhost:7070
-
-
-
