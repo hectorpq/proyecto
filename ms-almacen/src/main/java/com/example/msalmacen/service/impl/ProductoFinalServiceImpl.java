@@ -6,6 +6,7 @@ import com.example.msalmacen.repository.ProductoFinalRepository;
 import com.example.msalmacen.service.ProductoFinalService;
 import com.example.msalmacen.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductoFinalServiceImpl implements ProductoFinalService {
 
-    private final ProductoFinalRepository repository;
-    private final MapperUtil mapper;
+    @Autowired
+    private ProductoFinalRepository repository;
+
+    @Autowired
+    private MapperUtil mapper;
 
     @Override
     public ProductoFinalDTO guardar(ProductoFinalDTO dto) {
