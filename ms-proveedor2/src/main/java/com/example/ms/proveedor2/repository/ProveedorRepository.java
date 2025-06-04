@@ -74,6 +74,8 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
     // Verificar si existe un proveedor con ese correo
     boolean existsByCorreoElectronico(String correoElectronico);
 
+
+
     // Buscar proveedores por país y ciudad
     @Query("SELECT p FROM Proveedor p WHERE p.pais = :pais AND p.ciudad = :ciudad")
     List<Proveedor> findByPaisAndCiudad(@Param("pais") String pais, @Param("ciudad") String ciudad);

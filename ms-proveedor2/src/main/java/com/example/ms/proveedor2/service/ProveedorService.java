@@ -274,6 +274,13 @@ public class ProveedorService {
                 .collect(Collectors.toList());
     }
 
+    public List<ProveedorDTO> obtenerActivos() {
+        return proveedorRepository.findByActivoTrue()
+                .stream()
+                .map(this::entityToDTO)
+                .collect(Collectors.toList());
+    }
+
     // Métodos de conversión - CORREGIDOS
     private ProveedorDTO entityToDTO(Proveedor proveedor) {
         return new ProveedorDTO(

@@ -56,6 +56,8 @@ public class ProductoFinal {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro = LocalDateTime.now();
 
+
+
     public ProductoFinal(Long id, String codigo, String nombre, String descripcion, String color, Double pesoGsm, BigDecimal precioMetro, Integer stockMinimo, Boolean activo, LocalDateTime fechaRegistro, String unidad, Integer stockActual, Double anchoCm, String tipoTela) {
         this.id = id;
         this.codigo = codigo;
