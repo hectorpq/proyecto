@@ -292,4 +292,10 @@ public class ProveedorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/activos")
+    public ResponseEntity<List<ProveedorDTO>> obtenerProveedoresActivos() {
+        List<ProveedorDTO> proveedores = proveedorService.obtenerActivos();
+        return ResponseEntity.ok(proveedores);
+    }
 }

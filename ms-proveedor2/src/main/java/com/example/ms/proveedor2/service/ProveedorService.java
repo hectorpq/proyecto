@@ -160,7 +160,6 @@
 //
 //}
 
-
 package com.example.ms.proveedor2.service;
 
 import com.example.ms.proveedor2.dto.ProveedorDTO;
@@ -269,6 +268,13 @@ public class ProveedorService {
     @Transactional(readOnly = true)
     public List<ProveedorDTO> getProveedoresByCiudad(String ciudad) {
         return proveedorRepository.findByCiudadIgnoreCase(ciudad)
+                .stream()
+                .map(this::entityToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProveedorDTO> obtenerActivos() {
+        return proveedorRepository.findByActivoTrue()
                 .stream()
                 .map(this::entityToDTO)
                 .collect(Collectors.toList());

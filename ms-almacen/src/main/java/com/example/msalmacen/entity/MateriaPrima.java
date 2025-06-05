@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "productos_finales")
+@Table(name = "materia_prima")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductoFinal {
+public class MateriaPrima {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +56,9 @@ public class ProductoFinal {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro = LocalDateTime.now();
 
-    public ProductoFinal(Long id, String codigo, String nombre, String descripcion, String color, Double pesoGsm, BigDecimal precioMetro, Integer stockMinimo, Boolean activo, LocalDateTime fechaRegistro, String unidad, Integer stockActual, Double anchoCm, String tipoTela) {
+
+
+    public MateriaPrima(Long id, String codigo, String nombre, String descripcion, String color, Double pesoGsm, BigDecimal precioMetro, Integer stockMinimo, Boolean activo, LocalDateTime fechaRegistro, String unidad, Integer stockActual, Double anchoCm, String tipoTela) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;

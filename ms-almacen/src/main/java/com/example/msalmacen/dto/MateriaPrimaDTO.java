@@ -6,10 +6,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
+
 @Builder
-public class ProductoFinalDTO {
+
+@AllArgsConstructor
+@NoArgsConstructor
+public class MateriaPrimaDTO {
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -26,7 +29,7 @@ public class ProductoFinalDTO {
 
 
 
-    public ProductoFinalDTO(String codigo, String nombre, String descripcion, String tipoTela, String color, Double anchoCm, Double pesoGsm, BigDecimal precioMetro, Integer stockActual, Integer stockMinimo, String unidad, LocalDateTime fechaRegistro, Boolean activo) {
+    public MateriaPrimaDTO(String codigo, String nombre, String descripcion, String tipoTela, String color, Double anchoCm, Double pesoGsm, BigDecimal precioMetro, Integer stockActual, Integer stockMinimo, String unidad, LocalDateTime fechaRegistro, Boolean activo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;

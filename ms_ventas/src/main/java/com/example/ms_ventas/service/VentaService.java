@@ -1,12 +1,17 @@
 package com.example.ms_ventas.service;
 
-import com.example.ms_ventas.entity.Venta;
+import com.example.ms_ventas.dto.VentaDTO;
+
 import java.util.List;
 
 public interface VentaService {
-    List<Venta> listar();
-    Venta obtenerPorId(Integer id);
-    Venta guardar(Venta venta);
-    Venta actualizar(Integer id, Venta venta);
-    void eliminar(Integer id);
+
+    VentaDTO registrarVenta(VentaDTO ventaDTO);
+
+    VentaDTO obtenerVentaPorId(Long id);
+
+    List<VentaDTO> listarVentas();
+
+    void eliminarVenta(Long id);
+
 }

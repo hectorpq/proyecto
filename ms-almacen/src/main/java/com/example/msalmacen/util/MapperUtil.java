@@ -1,14 +1,15 @@
 package com.example.msalmacen.util;
 
-import com.example.msalmacen.dto.ProductoFinalDTO;
-import com.example.msalmacen.entity.ProductoFinal;
+import com.example.msalmacen.dto.MateriaPrimaDTO;
+
+import com.example.msalmacen.entity.MateriaPrima;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MapperUtil {
 
-    public ProductoFinalDTO entityToDto(ProductoFinal entity) {
-        return ProductoFinalDTO.builder()
+    public MateriaPrimaDTO entityToDto(MateriaPrima entity) {
+        return MateriaPrimaDTO.builder()
                 .codigo(entity.getCodigo())
                 .nombre(entity.getNombre())
                 .descripcion(entity.getDescripcion())
@@ -25,8 +26,8 @@ public class MapperUtil {
                 .build();
     }
 
-    public ProductoFinal dtoToEntity(ProductoFinalDTO dto) {
-        return ProductoFinal.builder()
+    public MateriaPrima dtoToEntity(MateriaPrimaDTO dto) {
+        return MateriaPrima.builder()
                 .codigo(dto.getCodigo())
                 .nombre(dto.getNombre())
                 .descripcion(dto.getDescripcion())

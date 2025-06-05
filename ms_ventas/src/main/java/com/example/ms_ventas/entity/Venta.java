@@ -1,49 +1,30 @@
 package com.example.ms_ventas.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "ventas") // Nombre de la tabla en la base de datos
+@Table(name = "venta")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private Integer clienteId;
+    private LocalDateTime fecha;
 
-    private Integer categoriaId;
+    private Long clienteId; // Solo el id del cliente, el detalle se jala vía Feign
 
-    public Venta() {
-    }
+    private Double total;
 
-    public Venta(Integer id, Integer clienteId, Integer categoriaId) {
-        this.id = id;
-        this.clienteId = clienteId;
-        this.categoriaId = categoriaId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
-    }
-
-    public Integer getCategoriaId() {
-        return categoriaId;
-    }
-
-    public void setCategoriaId(Integer categoriaId) {
-        this.categoriaId = categoriaId;
-    }
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detalles;
 }
