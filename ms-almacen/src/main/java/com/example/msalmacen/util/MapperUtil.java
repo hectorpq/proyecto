@@ -1,9 +1,16 @@
 package com.example.msalmacen.util;
 
+import com.example.msalmacen.dto.ComposicionDTO;
 import com.example.msalmacen.dto.MateriaPrimaDTO;
 
+import com.example.msalmacen.dto.ProductoTerminadoDTO;
+import com.example.msalmacen.entity.ComposicionProducto;
 import com.example.msalmacen.entity.MateriaPrima;
+import com.example.msalmacen.entity.ProductoTerminado;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MapperUtil {
@@ -43,4 +50,22 @@ public class MapperUtil {
                 .fechaRegistro(dto.getFechaRegistro())
                 .build();
     }
+
+    public ProductoTerminadoDTO mapProductoTerminadoToDTO(ProductoTerminado producto, List<ComposicionProducto> composiciones) {
+        ProductoTerminadoDTO dto = new ProductoTerminadoDTO();
+        dto.setId(producto.getId());
+        dto.setCodigo(producto.getCodigo());
+        dto.setNombre(producto.getNombre());
+        dto.setDescripcion(producto.getDescripcion());
+        dto.setComposiciones(
+                composiciones.stream().map(comp -> {
+                    ComposicionDTO cdto = new ComposicionDTO();
+                    cdto.setMateriaPrimaId(comp.getMateriaPrima().getId());
+                    cdto.setCantidadNecesaria(comp.getCantidadNecesaria());
+                    return cdto;
+                }).collect(Collectors.toList())
+        );
+        return dto;
+    }
+
 }

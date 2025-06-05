@@ -41,8 +41,8 @@ public class MateriaPrima {
     @Column(name = "precio_metro", precision = 10, scale = 2)
     private BigDecimal precioMetro;
 
-    @Column(name = "stock_actual", precision = 10, scale = 2)
-    private Integer stockActual = (int) 0.0;
+    @Column(name = "stock_actual")
+    private Integer stockActual = 0;
 
     @Column(name = "stock_minimo", precision = 10, scale = 2)
     private Integer stockMinimo = (int) 0.0;
