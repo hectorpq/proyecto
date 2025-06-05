@@ -16,6 +16,7 @@ public class ProductoTerminadoController {
         this.service = service;
     }
 
+
     @PostMapping
     public ResponseEntity<ProductoTerminadoDTO> crear(@RequestBody ProductoTerminadoDTO dto) {
         return ResponseEntity.ok(service.crearProductoTerminado(dto));
@@ -41,4 +42,13 @@ public class ProductoTerminadoController {
         service.eliminarProductoTerminado(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}/stock")
+    public ResponseEntity<ProductoTerminadoDTO> descontarStock(
+            @PathVariable Long id,
+            @RequestParam int cantidad) {
+
+        ProductoTerminadoDTO dto = service.descontarStock(id, cantidad);
+        return ResponseEntity.ok(dto);
+    }
+
 }

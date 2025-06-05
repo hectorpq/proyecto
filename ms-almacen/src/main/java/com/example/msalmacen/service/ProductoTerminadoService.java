@@ -9,4 +9,6 @@ public interface ProductoTerminadoService {
     List<ProductoTerminadoDTO> listarTodos();
     ProductoTerminadoDTO actualizarProductoTerminado(Long id, ProductoTerminadoDTO dto);
     void eliminarProductoTerminado(Long id);
+
+    ProductoTerminadoDTO descontarStock(Long id, int cantidad);
 }

@@ -34,12 +34,15 @@ public class ProductoTerminadoServiceImpl implements ProductoTerminadoService {
         this.materiaRepo = materiaRepo;
         this.mapper = mapper;
     }
+
     @Override
     public ProductoTerminadoDTO crearProductoTerminado(ProductoTerminadoDTO dto) {
         ProductoTerminado producto = new ProductoTerminado();
         producto.setCodigo(dto.getCodigo());
         producto.setNombre(dto.getNombre());
         producto.setDescripcion(dto.getDescripcion());
+        producto.setStockActual(dto.getStockActual());
+        producto.setStockMinimo(dto.getStockMinimo());
         producto = productoRepo.save(producto);
 
         List<ComposicionProducto> composiciones = new ArrayList<>();
@@ -50,17 +53,14 @@ public class ProductoTerminadoServiceImpl implements ProductoTerminadoService {
 
             Double cantidadRequerida = c.getCantidadNecesaria();
 
-            // Verifica si hay suficiente stock
             if (mp.getStockActual() < cantidadRequerida) {
                 throw new IllegalArgumentException("Stock insuficiente de materia prima");
             }
 
-            // Descuenta el stock
             Integer nuevoStock = (int) (mp.getStockActual() - cantidadRequerida);
             mp.setStockActual(nuevoStock);
             materiaRepo.save(mp);
 
-            // Crea la relación
             ComposicionProducto composicion = new ComposicionProducto();
             composicion.setProductoTerminado(producto);
             composicion.setMateriaPrima(mp);
@@ -72,7 +72,6 @@ public class ProductoTerminadoServiceImpl implements ProductoTerminadoService {
         composicionRepo.saveAll(composiciones);
         return mapper.mapProductoTerminadoToDTO(producto, composiciones);
     }
-
 
     @Override
     public ProductoTerminadoDTO obtenerProductoTerminado(Long id) {
@@ -122,5 +121,21 @@ public class ProductoTerminadoServiceImpl implements ProductoTerminadoService {
         composicionRepo.deleteAll(composicionRepo.findByProductoTerminadoId(id));
         productoRepo.deleteById(id);
     }
-}
 
+    @Override
+    public ProductoTerminadoDTO descontarStock(Long id, int cantidad) {
+        ProductoTerminado producto = productoRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Producto terminado no encontrado"));
+
+        int stockActual = producto.getStockActual();
+        if (stockActual < cantidad) {
+            throw new IllegalArgumentException("Stock insuficiente para el producto terminado");
+        }
+
+        producto.setStockActual(stockActual - cantidad);
+        producto = productoRepo.save(producto);
+
+        List<ComposicionProducto> composiciones = composicionRepo.findByProductoTerminadoId(id);
+        return mapper.mapProductoTerminadoToDTO(producto, composiciones);
+    }
+}

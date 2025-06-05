@@ -9,5 +9,10 @@ public class ProductoTerminadoDTO {
     private String codigo;
     private String nombre;
     private String descripcion;
+
+    // Nuevo: stockActual y stockMinimo
+    private Integer stockActual;
+    private Integer stockMinimo;
+
     private List<ComposicionDTO> composiciones;
 }

@@ -25,10 +25,10 @@ public class ProductoTerminado {
     private String descripcion;
 
     @Column(name = "stock_actual", nullable = false)
-    private Integer stockActual = 0;
+    private Integer stockActual ;
 
     @Column(name = "stock_minimo", nullable = false)
-    private Integer stockMinimo = 0;
+    private Integer stockMinimo ;
 
     @Column(nullable = false)
     private Boolean activo = true;

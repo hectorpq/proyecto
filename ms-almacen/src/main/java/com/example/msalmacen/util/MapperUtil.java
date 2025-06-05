@@ -57,6 +57,8 @@ public class MapperUtil {
         dto.setCodigo(producto.getCodigo());
         dto.setNombre(producto.getNombre());
         dto.setDescripcion(producto.getDescripcion());
+        dto.setStockActual(producto.getStockActual());   // ← asigna stockActual
+        dto.setStockMinimo(producto.getStockMinimo());   // ← asigna stockMinimo
         dto.setComposiciones(
                 composiciones.stream().map(comp -> {
                     ComposicionDTO cdto = new ComposicionDTO();
@@ -69,3 +71,4 @@ public class MapperUtil {
     }
 
 }
+
