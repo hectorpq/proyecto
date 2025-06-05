@@ -15,5 +15,3 @@ spring:
     user:
       name: root
       password: 123456
-
-
