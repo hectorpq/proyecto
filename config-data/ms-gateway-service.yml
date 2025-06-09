@@ -29,7 +29,6 @@ spring:
           predicates:
             - Path=/api/clientes**
 
-
         - id: ms-venta-service
           uri: lb://ms-venta-service
           predicates:
@@ -42,19 +41,12 @@ spring:
             - Path=/auth/**
 
 
-        - id: ms-proveedor-service
-          uri: lb://ms-proveedor-service
-          predicates:
-            - Path=/api/v1/proveedores**
-#          filters:
-#            - AuthFilter
-
         - id: ms-proveedor2-service
           uri: lb://ms-proveedor2-service
           predicates:
             - Path=/api/proveedores/**
-        #          filters:
-        #            - AuthFilter
+          filters:
+             - AuthFilter
 
 
 
@@ -64,8 +56,8 @@ spring:
           predicates:
             - Path=/api/productos-terminados/**, /api/productos/**, /api/almacenes/**, /api/detalle-ingresos/**, /api/ingresos-materia-prima/**, /api/stock-almacen/**
 
-        #          filters:
-        #            - AuthFilter
+          filters:
+            - AuthFilter
 
 
 
