@@ -251,7 +251,7 @@ public class ProveedorController {
         }
     }
 
-    // GET /api/proveedores/search?nombre={nombre} - Buscar por nombre de empresa
+        // GET /api/proveedores/search?nombre={nombre} - Buscar por nombre de empresa
     @GetMapping("/search")
     public ResponseEntity<List<ProveedorDTO>> searchProveedores(@RequestParam String nombre) {
         try {
